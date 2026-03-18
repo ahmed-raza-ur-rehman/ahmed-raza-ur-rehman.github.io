@@ -1,0 +1,13 @@
+# robots.txt for ahmed-raza-ur-rehman.me
+
+User-agent: *
+Allow: /
+
+# Disallow 404 page from search engines
+Disallow: /404.html
+
+# Sitemap location
+Sitemap: https://ahmed-raza-ur-rehman.me/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1
