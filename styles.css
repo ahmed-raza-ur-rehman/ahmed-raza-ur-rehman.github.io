@@ -1,8 +1,5 @@
 :root {
   --bg: #050b14;
-  --bg-soft: #0b1625;
-  --panel: rgba(10, 22, 37, 0.72);
-  --panel-strong: #0f1f33;
   --line: rgba(151, 175, 201, 0.24);
   --text: #e8f2ff;
   --text-dim: #a3b5ca;
@@ -22,7 +19,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
   color: var(--text);
   background:
     radial-gradient(circle at 12% 18%, rgba(48, 199, 255, 0.22) 0%, transparent 42%),
@@ -159,7 +156,7 @@ body {
 .nav-links a {
   color: var(--text-dim);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: color 180ms ease, transform 180ms ease;
 }
 
@@ -174,7 +171,8 @@ section {
   padding: 5.5rem 0;
 }
 
-.hero {
+.hero,
+.page-hero {
   padding-top: 6.5rem;
 }
 
@@ -187,13 +185,14 @@ section {
   font-size: 0.78rem;
 }
 
-.hero h1 {
+.hero h1,
+.page-hero h1 {
   font-family: "Syne", sans-serif;
   line-height: 1.08;
   margin: 0;
   font-size: clamp(2rem, 6.8vw, 4.6rem);
   letter-spacing: -0.025em;
-  max-width: 13ch;
+  max-width: 16ch;
 }
 
 .gradient-text {
@@ -203,14 +202,16 @@ section {
   color: transparent;
 }
 
-.hero-copy {
-  max-width: 60ch;
+.hero-copy,
+.lead-copy {
+  max-width: 65ch;
   margin-top: 1.4rem;
   color: var(--text-dim);
   font-size: clamp(1rem, 2vw, 1.18rem);
 }
 
-.hero-actions {
+.hero-actions,
+.contact-actions {
   margin-top: 2rem;
   display: flex;
   gap: 0.9rem;
@@ -251,32 +252,71 @@ section {
   border-color: var(--accent);
 }
 
-.hero-stats {
-  margin: 3rem 0 0;
+.hero-stats,
+.info-grid,
+.stats-grid,
+.skill-columns,
+.project-grid,
+.timeline,
+.course-grid,
+.product-grid,
+.contact-grid {
+  margin: 2rem 0 0;
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
-.hero-stats li {
-  background: linear-gradient(155deg, rgba(15, 31, 51, 0.88), rgba(8, 19, 32, 0.78));
+.hero-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.info-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.stats-grid,
+.skill-columns,
+.course-grid,
+.product-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.project-grid,
+.timeline,
+.contact-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
   border: 1px solid var(--line);
   border-radius: 1rem;
-  padding: 1.1rem;
+  background: linear-gradient(165deg, rgba(15, 31, 51, 0.86), rgba(8, 19, 32, 0.84));
   box-shadow: var(--shadow);
 }
 
-.hero-stats strong {
-  display: block;
-  font-family: "Syne", sans-serif;
-  font-size: 1.18rem;
+.hero-stats li,
+.info-grid li,
+.stats-grid li,
+.timeline li {
+  padding: 1.1rem;
 }
 
-.hero-stats span {
+.hero-stats strong,
+.info-grid strong,
+.stats-grid strong {
+  display: block;
+  font-family: "Syne", sans-serif;
+  font-size: 1.12rem;
+}
+
+.hero-stats span,
+.info-grid span,
+.stats-grid span,
+.dim {
   color: var(--text-dim);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
 }
 
 .section-heading h2 {
@@ -311,69 +351,57 @@ section {
   gap: 1rem;
 }
 
-.card {
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  background: linear-gradient(165deg, rgba(15, 31, 51, 0.86), rgba(8, 19, 32, 0.84));
-  box-shadow: var(--shadow);
+.about-text,
+.skill-card,
+.timeline-item,
+.course-card,
+.project-card,
+.product-card,
+.contact-panel {
+  padding: 1.25rem;
 }
 
-.about-text {
-  padding: 1.35rem;
-}
-
-.about-text p {
-  margin: 0;
-  color: var(--text-dim);
-}
-
-.about-text p + p {
-  margin-top: 1rem;
-}
-
-.code-card {
-  margin: 0;
-  padding: 1.35rem;
-  overflow: auto;
-  font-family: "JetBrains Mono", monospace;
-  color: #bde8ff;
-}
-
-.skill-columns {
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.skill-card {
-  padding: 1.2rem;
-}
-
-.skill-card h3 {
-  margin: 0;
-  font-family: "Syne", sans-serif;
-}
-
-.skill-card p {
+.about-text p,
+.skill-card p,
+.project-card p,
+.timeline-item p,
+.course-card p,
+.product-card p,
+.contact-panel p {
   margin: 0.75rem 0 0;
   color: var(--text-dim);
 }
 
-.project-grid {
-  margin-top: 1.8rem;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+.about-text p:first-child,
+.contact-panel p:first-of-type {
+  margin-top: 0;
 }
 
-.project-card {
+.code-card {
+  margin: 0;
+  overflow: auto;
+  font-family: "JetBrains Mono", monospace;
+  color: #bde8ff;
+  white-space: pre-wrap;
+}
+
+.skill-card h3,
+.project-card h3,
+.timeline-item h3,
+.course-card h3,
+.product-card h3 {
+  margin: 0;
+  font-family: "Syne", sans-serif;
+}
+
+.project-card,
+.product-card {
   position: relative;
-  padding: 1.25rem;
   overflow: hidden;
 }
 
-.project-card::after {
+.project-card::after,
+.product-card::after {
   content: "";
   position: absolute;
   inset: auto -30% -65% auto;
@@ -383,21 +411,13 @@ section {
   pointer-events: none;
 }
 
-.project-index {
+.project-index,
+.status-label {
   margin: 0;
   font-family: "JetBrains Mono", monospace;
   color: var(--accent-2);
   font-size: 0.86rem;
-}
-
-.project-card h3 {
-  margin: 0.4rem 0;
-  font-family: "Syne", sans-serif;
-  font-size: 1.3rem;
-}
-
-.project-card p {
-  color: var(--text-dim);
+  text-transform: uppercase;
 }
 
 .tag-list {
@@ -418,58 +438,41 @@ section {
   padding: 0.3rem 0.65rem;
 }
 
-.timeline {
-  margin: 2rem 0 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
+.course-table-wrap {
+  margin-top: 1.4rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
 }
 
-.timeline-item {
-  padding: 1.1rem;
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+  background: rgba(8, 19, 32, 0.92);
 }
 
-.timeline-item h3 {
-  margin: 0;
+.course-table th,
+.course-table td {
+  text-align: left;
+  padding: 0.85rem;
+  border-bottom: 1px solid rgba(151, 175, 201, 0.16);
+}
+
+.course-table th {
   font-family: "Syne", sans-serif;
+  font-size: 0.95rem;
 }
 
-.timeline-item p {
-  margin: 0.75rem 0 0;
+.course-table td {
   color: var(--text-dim);
 }
 
 .contact-panel {
-  border: 1px solid var(--line);
-  border-radius: 1.1rem;
-  padding: clamp(1.2rem, 3.5vw, 2.3rem);
   background:
     linear-gradient(140deg, rgba(8, 19, 32, 0.95), rgba(17, 32, 53, 0.92)),
     radial-gradient(circle at 100% 0%, rgba(48, 199, 255, 0.16), transparent 45%);
-  box-shadow: var(--shadow);
-}
-
-.contact-panel h2 {
-  margin: 0;
-  font-family: "Syne", sans-serif;
-  font-size: clamp(1.7rem, 5vw, 3rem);
-  line-height: 1.1;
-  max-width: 17ch;
-}
-
-.contact-panel p {
-  margin-top: 0.9rem;
-  max-width: 58ch;
-  color: var(--text-dim);
-}
-
-.contact-actions {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
 }
 
 .site-footer {
@@ -491,8 +494,13 @@ section {
 
 @media (max-width: 980px) {
   .hero-stats,
+  .info-grid,
+  .stats-grid,
   .skill-columns,
-  .timeline {
+  .course-grid,
+  .product-grid,
+  .timeline,
+  .contact-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -550,18 +558,25 @@ section {
     border-radius: 0.55rem;
   }
 
-  .hero {
+  .hero,
+  .page-hero {
     padding-top: 5rem;
   }
 
-  .hero h1 {
+  .hero h1,
+  .page-hero h1 {
     max-width: 100%;
   }
 
   .hero-stats,
+  .info-grid,
+  .stats-grid,
   .skill-columns,
   .project-grid,
-  .timeline {
+  .course-grid,
+  .product-grid,
+  .timeline,
+  .contact-grid {
     grid-template-columns: 1fr;
   }
 }

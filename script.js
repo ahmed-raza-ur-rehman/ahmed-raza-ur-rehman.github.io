@@ -17,35 +17,29 @@ if (navToggle && navLinks) {
   });
 }
 
-const sections = document.querySelectorAll('main section[id]');
-const navMap = new Map(
-  Array.from(navAnchors).map((anchor) => [
-    anchor.getAttribute('href')?.replace('#', ''),
-    anchor,
-  ])
-);
-
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) {
-        return;
-      }
-
-      const id = entry.target.getAttribute('id');
-      navMap.forEach((link) => link.classList.remove('active'));
-      if (id && navMap.has(id)) {
-        navMap.get(id).classList.add('active');
-      }
-    });
-  },
-  {
-    rootMargin: '-35% 0px -55% 0px',
-    threshold: 0,
+const normalizePath = (path) => {
+  if (!path || path === '/') {
+    return 'index.html';
   }
-);
 
-sections.forEach((section) => sectionObserver.observe(section));
+  const clean = path.split('/').pop();
+  return clean || 'index.html';
+};
+
+const currentPage = normalizePath(window.location.pathname);
+
+navAnchors.forEach((anchor) => {
+  const href = anchor.getAttribute('href');
+  if (!href || href.startsWith('http') || href.startsWith('mailto:')) {
+    return;
+  }
+
+  const targetPage = normalizePath(href);
+  if (targetPage === currentPage) {
+    anchor.classList.add('active');
+    anchor.setAttribute('aria-current', 'page');
+  }
+});
 
 const revealTargets = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver(

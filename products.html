@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Products and engineering deliverables by Ahmed Raza Ur Rehman." />
+  <title>Products | Ahmed Raza Ur Rehman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="background-orbs" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Homepage">
+        <span class="brand-mark">AR</span>
+        <span class="brand-text">Ahmed Raza Ur Rehman</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+        <span class="sr-only">Toggle navigation</span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero container reveal">
+      <p class="eyebrow">Products and Showcases</p>
+      <h1>A platform to showcase project outcomes and engineering products</h1>
+      <p class="lead-copy">
+        This dedicated page is structured for product-style presentations, prototypes,
+        and deployable engineering artifacts. Replace placeholders with live demos,
+        repositories, images, and technical documentation as releases progress.
+      </p>
+    </section>
+
+    <section class="container reveal" aria-labelledby="products-title">
+      <div class="section-heading">
+        <p class="eyebrow">Current Showcase Slots</p>
+        <h2 id="products-title">Featured products</h2>
+      </div>
+
+      <div class="product-grid">
+        <article class="card product-card">
+          <p class="status-label">Prototype</p>
+          <h3>Industrial Inverter Control Unit</h3>
+          <p>Productized derivative of PIC18 inverter architecture with modular driver logic and safety monitoring.</p>
+          <ul class="tag-list">
+            <li>Embedded Firmware</li>
+            <li>PWM Control</li>
+            <li>Power Systems</li>
+          </ul>
+        </article>
+
+        <article class="card product-card">
+          <p class="status-label">IoT Platform</p>
+          <h3>ESP32 Remote Device Console</h3>
+          <p>Web-accessible control system for remote command and telemetry display from embedded device endpoints.</p>
+          <ul class="tag-list">
+            <li>ESP32</li>
+            <li>HTTP APIs</li>
+            <li>Monitoring</li>
+          </ul>
+        </article>
+
+        <article class="card product-card">
+          <p class="status-label">In Development</p>
+          <h3>SMD Assembly Automation Suite</h3>
+          <p>Motion-driven pick-and-place system planned as a complete hardware-software product workflow.</p>
+          <ul class="tag-list">
+            <li>Automation</li>
+            <li>Control Systems</li>
+            <li>Precision Robotics</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <p>Copyright <span id="year"></span> Ahmed Raza Ur Rehman.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
