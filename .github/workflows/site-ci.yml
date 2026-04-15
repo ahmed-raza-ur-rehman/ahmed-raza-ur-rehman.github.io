@@ -1,0 +1,52 @@
+name: Site CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate site structure and references
+        run: python scripts/validate_site.py
+
+      - name: Check critical files
+        run: |
+          test -f index.html
+          test -f blog/index.html
+          test -f blog/post.html
+          test -f admin/index.html
+          test -f robots.txt
+          test -f sitemap.xml
+
+      - name: Link check (internal and external)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress --accept 200,204,206,301,302,303,307,308 --retry-wait-time 2 --max-retries 2 --timeout 15 --exclude-mail '*.html' '*.md'
+          fail: true
+
+      - name: Upload CI report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-ci-report
+          path: |
+            .lycheeout
+            scripts/validate_site.py
+          if-no-files-found: ignore

@@ -1,0 +1,281 @@
+/* ========================================================================== 
+   Cursor and Motion System
+   ========================================================================== */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  opacity: 1;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--highlight-color);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.9), 0 0 26px rgba(0, 212, 255, 0.25);
+  transition: width 180ms var(--ease-out), height 180ms var(--ease-out), opacity 180ms var(--ease-out), background-color 180ms var(--ease-out);
+}
+
+.cursor-ring {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 212, 255, 0.34);
+  background: rgba(0, 212, 255, 0.03);
+  transition: width 220ms var(--ease-out), height 220ms var(--ease-out), background-color 220ms var(--ease-out), border-color 220ms var(--ease-out), opacity 220ms var(--ease-out);
+}
+
+.cursor-dot.is-hover,
+.cursor-ring.is-hover {
+  opacity: 1;
+}
+
+.cursor-dot.is-hover {
+  width: 12px;
+  height: 12px;
+  background: var(--text-primary);
+}
+
+.cursor-ring.is-hover {
+  width: 64px;
+  height: 64px;
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.68);
+}
+
+.cursor-ring.is-pressed {
+  width: 34px;
+  height: 34px;
+  background: rgba(0, 212, 255, 0.22);
+}
+
+.ripple {
+  position: fixed;
+  z-index: calc(var(--z-cursor) - 1);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 212, 255, 0.65);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: ripple-out 640ms var(--ease-out) forwards;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: calc(var(--z-background) + 1);
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.circuit-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-background);
+  opacity: 0.9;
+  background-size: 54px 54px;
+  background-image:
+    linear-gradient(to right, rgba(0, 212, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 212, 255, 0.035) 1px, transparent 1px);
+}
+
+@keyframes ripple-out {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.85;
+  }
+
+  100% {
+    width: 120px;
+    height: 120px;
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes orb-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(2.5rem, 1.5rem, 0) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-dot,
+  .cursor-ring,
+  .ripple,
+  .site-backdrop__orb,
+  .hero-stage__pulse,
+  .reveal {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}
+
+/* ========================================================================== 
+   Section Motion
+   ========================================================================== */
+.hero-copy,
+.hero-stage,
+.about-visual,
+.about-copy,
+.skill-galaxy,
+.project-card,
+.interest-card,
+.lab-card,
+.game-card,
+.blog-card,
+.contact-card,
+.contact-form,
+.chat-panel,
+.newsletter-banner,
+.terminal-shell {
+  animation: lift-in 900ms var(--ease-out) both;
+}
+
+.hero-socials a,
+.footer-links a,
+.project-tags span,
+.filter-chip,
+.skill-node,
+.skill-cluster,
+.logic-option,
+.memory-cell,
+.reaction-signal {
+  transition: transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out), border-color 180ms var(--ease-out), background-color 180ms var(--ease-out), color 180ms var(--ease-out), opacity 180ms var(--ease-out);
+}
+
+.hero-socials a:hover,
+.footer-links a:hover,
+.filter-chip:hover,
+.skill-node:hover,
+.skill-cluster:hover,
+.logic-option:hover,
+.memory-cell:hover,
+.reaction-signal:hover {
+  transform: translateY(-1px);
+}
+
+.memory-cell.is-pattern {
+  animation: pattern-pulse 1s ease-in-out infinite;
+}
+
+.flash-circuit .site-backdrop__orb--right,
+.flash-circuit .hero-stage__pulse,
+.flash-circuit .skill-node {
+  filter: saturate(1.4) drop-shadow(0 0 18px rgba(0, 212, 255, 0.3));
+}
+
+.flash-matrix::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  background: linear-gradient(180deg, rgba(0, 255, 102, 0.06), transparent 30%);
+}
+
+.flash-celebration .site-backdrop__orb--left {
+  animation: celebration 1s ease-in-out infinite alternate;
+}
+
+@keyframes ripple-out {
+  0% { width: 0; height: 0; opacity: 0.9; }
+  100% { width: 120px; height: 120px; opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+@keyframes orb-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(2.5rem, 1.5rem, 0) scale(1.08); }
+}
+
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(10rem) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(10rem) rotate(-360deg); }
+}
+
+@keyframes lift-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pattern-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.2); }
+  50% { box-shadow: 0 0 0 8px rgba(0, 212, 255, 0.02); }
+}
+
+@keyframes celebration {
+  from { transform: scale(0.95); }
+  to { transform: scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy,
+  .hero-stage,
+  .about-visual,
+  .about-copy,
+  .skill-galaxy,
+  .project-card,
+  .interest-card,
+  .lab-card,
+  .game-card,
+  .blog-card,
+  .contact-card,
+  .contact-form,
+  .chat-panel,
+  .newsletter-banner,
+  .terminal-shell,
+  .memory-cell.is-pattern {
+    animation: none !important;
+  }
+}
