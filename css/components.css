@@ -853,12 +853,26 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.9rem;
+  position: relative;
+  z-index: 2;
 }
 
 .chat-close {
   border: 0;
   background: transparent;
   color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: color 180ms var(--ease-out), background-color 180ms var(--ease-out);
+  position: relative;
+  z-index: 2;
+}
+
+.chat-close:hover,
+.chat-close:focus {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .chat-thread {

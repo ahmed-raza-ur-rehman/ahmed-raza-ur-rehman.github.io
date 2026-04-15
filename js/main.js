@@ -799,13 +799,25 @@
     };
 
     open.addEventListener('click', () => {
+      console.log('Chat open clicked');
       panel.classList.add('is-open');
       panel.setAttribute('aria-hidden', 'false');
       renderThread();
     });
     close.addEventListener('click', () => {
+      console.log('Chat close clicked');
       panel.classList.remove('is-open');
       panel.setAttribute('aria-hidden', 'true');
+    });
+
+    // Also handle escape key to close chat
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+        console.log('Escape key pressed, closing chat');
+        panel.classList.remove('is-open');
+        panel.setAttribute('aria-hidden', 'true');
+        open.focus();
+      }
     });
 
     form.addEventListener('submit', (event) => {
