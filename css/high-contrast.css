@@ -1,0 +1,86 @@
+/* High contrast mode for accessibility */
+body.high-contrast {
+  --bg-color: #000000;
+  --bg-elevated: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #ffff00;
+  --highlight-color: #00ff00;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: #ffffff;
+  --accent-primary: #ffff00;
+  --accent-secondary: #00ff00;
+}
+
+body.high-contrast .glass-card {
+  border: 2px solid #ffffff;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+body.high-contrast .btn {
+  border: 2px solid #ffffff;
+  background: #000000;
+  color: #ffffff;
+}
+
+body.high-contrast .btn-primary {
+  background: #ffffff;
+  color: #000000;
+}
+
+body.high-contrast .nav-links a:hover,
+body.high-contrast .nav-links a:focus-visible,
+body.high-contrast .nav-links a.active {
+  color: #ffff00;
+  border-bottom: 2px solid #ffff00;
+}
+
+body.high-contrast a {
+  color: #00ff00;
+  text-decoration: underline;
+}
+
+body.high-contrast a:hover,
+body.high-contrast a:focus {
+  color: #ffff00;
+  background: #000000;
+}
+
+/* Enhanced focus indicators */
+body.high-contrast *:focus {
+  outline: 3px solid #ffff00;
+  outline-offset: 2px;
+}
+
+/* Skip link enhancement */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000000;
+  color: #ffffff;
+  padding: 8px;
+  text-decoration: none;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
+  z-index: 10000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Form enhancements */
+body.high-contrast input,
+body.high-contrast textarea,
+body.high-contrast select {
+  border: 2px solid #ffffff;
+  background: #000000;
+  color: #ffffff;
+}
+
+body.high-contrast input:focus,
+body.high-contrast textarea:focus,
+body.high-contrast select:focus {
+  border-color: #ffff00;
+  box-shadow: 0 0 0 2px #ffff00;
+}
