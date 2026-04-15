@@ -243,14 +243,26 @@
     }
   }
 
-  function initHero() {
+  async function initHero() {
     const canvas = document.querySelector('[data-hero-canvas]');
     const fallback = document.querySelector('.hero-canvas-fallback');
-    if (!canvas || !window.THREE) {
+    if (!canvas) {
       if (fallback) {
         fallback.classList.add('is-visible');
       }
       return;
+    }
+
+    let THREE = window.THREE;
+    if (!THREE || !THREE.Scene) {
+      try {
+        THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+      } catch {
+        if (fallback) {
+          fallback.classList.add('is-visible');
+        }
+        return;
+      }
     }
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -886,6 +898,12 @@
 
     close.addEventListener('click', () => {
       overlay.hidden = true;
+    });
+
+    overlay.addEventListener('click', (event) => {
+      if (event.target === overlay) {
+        overlay.hidden = true;
+      }
     });
 
     document.addEventListener('keydown', (event) => {
