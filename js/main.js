@@ -652,6 +652,7 @@
 
     let reactionTimeout = null;
     let reactionActive = false;
+    let startTime = 0;
 
     reactionStart.addEventListener('click', () => {
       reactionResult.textContent = 'Wait for green...';
@@ -674,7 +675,6 @@
       }, 900 + Math.random() * 2000);
     });
 
-    let startTime = 0;
     let logicIndex = 0;
     const renderLogic = () => {
       const question = logicQuestions[logicIndex % logicQuestions.length];
@@ -799,13 +799,11 @@
     };
 
     open.addEventListener('click', () => {
-      console.log('Chat open clicked');
       panel.classList.add('is-open');
       panel.setAttribute('aria-hidden', 'false');
       renderThread();
     });
     close.addEventListener('click', () => {
-      console.log('Chat close clicked');
       panel.classList.remove('is-open');
       panel.setAttribute('aria-hidden', 'true');
     });
@@ -813,7 +811,6 @@
     // Also handle escape key to close chat
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && panel.classList.contains('is-open')) {
-        console.log('Escape key pressed, closing chat');
         panel.classList.remove('is-open');
         panel.setAttribute('aria-hidden', 'true');
         open.focus();
@@ -851,12 +848,6 @@
         banner.hidden = false;
       }, 30000);
     }
-
-    document.addEventListener('mouseleave', (event) => {
-      if (event.clientY <= 0 && !window.matchMedia('(hover: none)').matches) {
-        banner.hidden = false;
-      }
-    });
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -984,6 +975,10 @@
     };
 
     document.addEventListener('keydown', (event) => {
+      const tag = event.target && event.target.tagName ? event.target.tagName.toUpperCase() : '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || event.target?.isContentEditable) {
+        return;
+      }
       if (event.code === 'Space' && !event.repeat) {
         event.preventDefault();
         start();

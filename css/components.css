@@ -949,6 +949,44 @@
   min-height: 8rem;
 }
 
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: calc(var(--z-nav) + 5);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#reading-progress {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--highlight-color);
+}
+
+.high-contrast-toggle {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: calc(var(--z-nav) + 10);
+  min-height: 2.5rem;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(10, 10, 15, 0.85);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.image-fallback {
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.03);
+}
+
 @media (max-width: 1100px) {
   .hero-grid,
   .about-grid,

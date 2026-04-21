@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://ahmed-raza-ur-rehman.me/</loc></url>
+  <url><loc>https://ahmed-raza-ur-rehman.me/about.html</loc></url>
+  <url><loc>https://ahmed-raza-ur-rehman.me/projects.html</loc></url>
+  <url><loc>https://ahmed-raza-ur-rehman.me/education.html</loc></url>
+  <url><loc>https://ahmed-raza-ur-rehman.me/products.html</loc></url>
+  <url><loc>https://ahmed-raza-ur-rehman.me/contact.html</loc></url>
   <url><loc>https://ahmed-raza-ur-rehman.me/blog/</loc></url>
   <url><loc>https://ahmed-raza-ur-rehman.me/blog/post.html?slug=pipelined-processor-on-fpga</loc></url>
   <url><loc>https://ahmed-raza-ur-rehman.me/admin/</loc></url>

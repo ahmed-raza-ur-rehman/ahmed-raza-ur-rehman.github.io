@@ -2,7 +2,7 @@
 class PerformanceOptimizer {
   constructor() {
     this.initLazyLoading();
-    this.initResourceHints();
+    this.optimizeAnimations();
     this.initServiceWorker();
   }
 
@@ -22,27 +22,10 @@ class PerformanceOptimizer {
     images.forEach(img => imageObserver.observe(img));
   }
 
-  initResourceHints() {
-    // Preload critical resources
-    const criticalResources = [
-      'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap',
-      'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js'
-    ];
-
-    criticalResources.forEach(url => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = url.includes('css') ? 'style' : 'script';
-      link.href = url;
-      document.head.appendChild(link);
-    });
-  }
-
   initServiceWorker() {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js')
-        .then(registration => console.log('SW registered'))
-        .catch(error => console.log('SW registration failed'));
+        .catch(() => {});
     }
   }
 

@@ -21,17 +21,26 @@ class SecurityManager {
     return re.test(email);
   }
 
-  encryptData(data) {
-    // Basic obfuscation for client-side storage
+  encodeData(data) {
+    // Base64 encoding only, not cryptographic encryption.
     return btoa(JSON.stringify(data));
   }
 
-  decryptData(encryptedData) {
+  decodeData(encodedData) {
     try {
-      return JSON.parse(atob(encryptedData));
+      return JSON.parse(atob(encodedData));
     } catch {
       return null;
     }
+  }
+
+  // Backward-compatible wrappers.
+  encryptData(data) {
+    return this.encodeData(data);
+  }
+
+  decryptData(encryptedData) {
+    return this.decodeData(encryptedData);
   }
 
   addCSRFProtection(form) {

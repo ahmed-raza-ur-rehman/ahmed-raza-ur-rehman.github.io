@@ -9,6 +9,7 @@
     subscribers: 'portfolio_subscribers',
     unlocked: 'portfolio_admin_unlocked'
   };
+  const ADMIN_PASSPHRASE_HASH = '38579b89fc17a22d610498797127482194f4b0a8a84afd591be44bfd714ba2ff';
 
   function getBlogPosts() {
     return utils.loadJSON(storageKeys.blog, data.blogPosts);
@@ -34,8 +35,22 @@
     return utils.loadJSON(storageKeys.unlocked, false) === true;
   }
 
-  function unlock(password) {
-    if (password.trim() === 'KICSIT-2026') {
+  async function hashText(text) {
+    if (!window.crypto || !window.crypto.subtle) {
+      return '';
+    }
+    const bytes = new TextEncoder().encode(text);
+    const digest = await window.crypto.subtle.digest('SHA-256', bytes);
+    return Array.from(new Uint8Array(digest)).map((byte) => byte.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function unlock(password) {
+    const normalized = password.trim();
+    if (!normalized) {
+      return false;
+    }
+    const hashed = await hashText(normalized);
+    if (hashed && hashed === ADMIN_PASSPHRASE_HASH) {
       utils.saveJSON(storageKeys.unlocked, true);
       return true;
     }
@@ -58,14 +73,22 @@
       </article>
     `;
 
-    root.querySelector('#admin-login-form').addEventListener('submit', (event) => {
+    root.querySelector('#admin-login-form').addEventListener('submit', async (event) => {
       event.preventDefault();
       const password = new FormData(event.currentTarget).get('password') || '';
       const status = root.querySelector('#admin-login-status');
-      if (unlock(String(password))) {
+      const submitButton = event.currentTarget.querySelector('button[type="submit"]');
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+      const isValid = await unlock(String(password));
+      if (isValid) {
         renderDashboard(root);
       } else {
         status.textContent = 'Incorrect passphrase.';
+      }
+      if (submitButton) {
+        submitButton.disabled = false;
       }
     });
   }
