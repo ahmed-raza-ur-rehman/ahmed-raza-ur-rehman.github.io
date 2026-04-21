@@ -798,21 +798,29 @@
       thread.scrollTop = thread.scrollHeight;
     };
 
+    const closeChat = () => {
+      panel.classList.remove('is-open');
+      panel.setAttribute('aria-hidden', 'true');
+    };
+
     open.addEventListener('click', () => {
       panel.classList.add('is-open');
       panel.setAttribute('aria-hidden', 'false');
       renderThread();
     });
-    close.addEventListener('click', () => {
-      panel.classList.remove('is-open');
-      panel.setAttribute('aria-hidden', 'true');
+    close.addEventListener('click', closeChat);
+
+    // Defensive delegated fallback in case close button gets re-rendered.
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Element && event.target.closest('#chat-close')) {
+        closeChat();
+      }
     });
 
     // Also handle escape key to close chat
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && panel.classList.contains('is-open')) {
-        panel.classList.remove('is-open');
-        panel.setAttribute('aria-hidden', 'true');
+        closeChat();
         open.focus();
       }
     });
@@ -880,6 +888,10 @@
     };
 
     let buffer = '';
+    const closeOverlay = () => {
+      overlay.hidden = true;
+    };
+
     const trigger = (key) => {
       if (key === 'HELP') {
         output.textContent = commands.HELP;
@@ -899,19 +911,24 @@
       }
     };
 
-    close.addEventListener('click', () => {
-      overlay.hidden = true;
+    close.addEventListener('click', closeOverlay);
+
+    // Defensive delegated fallback in case close button gets re-rendered.
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Element && event.target.closest('#terminal-close')) {
+        closeOverlay();
+      }
     });
 
     overlay.addEventListener('click', (event) => {
       if (event.target === overlay) {
-        overlay.hidden = true;
+        closeOverlay();
       }
     });
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
-        overlay.hidden = true;
+        closeOverlay();
       }
       if (/^[a-z]$/i.test(event.key)) {
         buffer = `${buffer}${event.key.toUpperCase()}`.slice(-32);
