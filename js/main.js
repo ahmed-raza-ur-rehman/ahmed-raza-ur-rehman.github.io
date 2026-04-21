@@ -48,60 +48,8 @@
     }
 
     initSmoothScroll() {
-      if (!this.wrapper || !this.content) {
-        return;
-      }
-
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const supportsFinePointer = window.matchMedia('(pointer: fine)').matches;
-      const supportsHover = window.matchMedia('(hover: hover)').matches;
-
-      this.smoothEnabled = supportsFinePointer && supportsHover && !prefersReducedMotion;
-      if (!this.smoothEnabled) {
-        return;
-      }
-
-      this.html.classList.add('has-smooth-scroll');
-      this.measure();
-
-      const resizeObserver = new ResizeObserver(() => this.measure());
-      resizeObserver.observe(this.content);
-
-      window.addEventListener('resize', () => this.measure(), { passive: true });
-      window.addEventListener('scroll', () => {
-        this.targetY = window.scrollY;
-        this.requestTick();
-      }, { passive: true });
-
-      this.requestTick();
-    }
-
-    measure() {
-      this.contentHeight = this.content.getBoundingClientRect().height;
-      this.body.style.height = `${this.contentHeight}px`;
-    }
-
-    requestTick() {
-      if (this.ticking) {
-        return;
-      }
-
-      this.ticking = true;
-      requestAnimationFrame(() => this.render());
-    }
-
-    render() {
-      this.currentY += (this.targetY - this.currentY) * this.ease;
-      if (Math.abs(this.targetY - this.currentY) < 0.05) {
-        this.currentY = this.targetY;
-      }
-
-      this.content.style.transform = `translate3d(0, -${this.currentY}px, 0)`;
-      this.ticking = false;
-
-      if (Math.abs(this.targetY - this.currentY) > 0.05) {
-        this.requestTick();
-      }
+      // Native CSS scroll-behavior: smooth handles smooth scrolling.
+      // No custom JS scroll hijacking needed.
     }
 
     initNav() {
@@ -205,12 +153,6 @@
 
         const target = document.querySelector(window.location.hash);
         if (!target) {
-          return;
-        }
-
-        if (this.smoothEnabled) {
-          this.targetY = target.getBoundingClientRect().top + window.scrollY;
-          this.requestTick();
           return;
         }
 

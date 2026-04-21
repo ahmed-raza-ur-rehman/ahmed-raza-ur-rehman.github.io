@@ -181,6 +181,7 @@
   transform: translateX(-120%);
   opacity: 0.7;
   transition: transform 650ms var(--ease-out);
+  pointer-events: none;
 }
 
 .glass-card:hover::before {
@@ -862,11 +863,17 @@
   background: transparent;
   color: var(--text-secondary);
   cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: color 180ms var(--ease-out), background-color 180ms var(--ease-out);
   position: relative;
-  z-index: 2;
+  z-index: 10;
 }
 
 .chat-close:hover,

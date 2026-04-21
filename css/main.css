@@ -48,7 +48,7 @@ html {
   min-height: 100%;
   background: var(--bg-color);
   color-scheme: dark;
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -67,15 +67,7 @@ body {
   overflow-x: clip;
 }
 
-html.has-smooth-scroll,
-html.has-smooth-scroll body {
-  height: 100%;
-  overflow: hidden;
-}
 
-html.has-smooth-scroll body {
-  position: relative;
-}
 
 a {
   color: inherit;
