@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Projects by Ahmed Raza Ur Rehman across embedded systems, IoT, automation, and control." />
+  <meta name="description" content="Projects by Ahmed Raza Ur Rehman - FPGA, embedded systems, PCB design, and hardware engineering." />
   <title>Projects | Ahmed Raza Ur Rehman</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,7 +30,6 @@
         <li><a href="about.html">About</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="education.html">Education</a></li>
-        <li><a href="products.html">Products</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -39,38 +38,64 @@
   <main>
     <section class="page-hero container reveal">
       <p class="eyebrow">Project Portfolio</p>
-      <h1>Project execution with real engineering depth</h1>
+      <h1>Hardware and systems engineering</h1>
       <p class="lead-copy">
-        This section highlights practical project work in embedded control, IoT communication,
-        motion automation, and integrated system behavior.
+        A selection of projects spanning FPGA design, embedded firmware, PCB development,
+        and full hardware-software integration.
       </p>
     </section>
 
     <section class="container reveal" aria-labelledby="projects-title">
       <div class="section-heading section-heading-inline">
         <div>
-          <p class="eyebrow">Flagship Work</p>
+          <p class="eyebrow">Featured Work</p>
           <h2 id="projects-title">Core engineering projects</h2>
         </div>
-        <a class="text-link" href="https://github.com/ahmed-raza-ur-rehman" target="_blank" rel="noreferrer noopener">GitHub Repositories</a>
+        <a class="text-link" href="https://github.com/ahmed-raza-ur-rehman" target="_blank" rel="noreferrer noopener">View GitHub</a>
       </div>
 
       <div class="project-grid">
         <article class="card project-card">
           <p class="project-index">Project 01</p>
+          <h3>Pipelined Processor on FPGA</h3>
+          <p>Implemented a minimal pipelined processor architecture on FPGA, covering datapath construction, control logic, simulation, synthesis, and bitstream generation.</p>
+          <ul class="tag-list">
+            <li>Verilog</li>
+            <li>VHDL</li>
+            <li>Xilinx ISE</li>
+            <li>Computer Architecture</li>
+          </ul>
+          <p class="dim">The hard part was not the HDL syntax. It was tracing timing, control hazards, and the relationship between intent and real hardware behavior.</p>
+        </article>
+
+        <article class="card project-card">
+          <p class="project-index">Project 02</p>
+          <h3>Automatic SMD Pick & Place Machine</h3>
+          <p>Final year project designing a pick-and-place machine for PCB assembly with STM32 firmware, motion control, custom boards, and hardware debugging.</p>
+          <ul class="tag-list">
+            <li>STM32</li>
+            <li>C</li>
+            <li>PCB Design</li>
+            <li>Motion Control</li>
+          </ul>
+          <p class="dim">Full hardware-software co-design: real-time control, stepper drivers, sensors, and the board-level work that makes the machine operate reliably.</p>
+        </article>
+
+        <article class="card project-card">
+          <p class="project-index">Project 03</p>
           <h3>Sine Wave Inverter using PIC18</h3>
-          <p>Designed and implemented a sine wave inverter using PIC18 microcontroller with stable control behavior.</p>
+          <p>Designed and implemented a sine wave inverter using PIC18 microcontroller with stable control behavior and PWM-based waveform generation.</p>
           <ul class="tag-list">
             <li>PIC18</li>
             <li>PWM</li>
             <li>Power Electronics</li>
             <li>Control Logic</li>
           </ul>
-          <p class="dim">Developed PWM-based waveform generation and integrated embedded control with power stage components.</p>
+          <p class="dim">Integrated embedded control with power stage components for reliable AC output.</p>
         </article>
 
         <article class="card project-card">
-          <p class="project-index">Project 02</p>
+          <p class="project-index">Project 04</p>
           <h3>ESP32 Embedded Web Server</h3>
           <p>Built an IoT web server on ESP32 for real-time monitoring and remote interaction with hardware modules.</p>
           <ul class="tag-list">
@@ -81,37 +106,34 @@
           </ul>
           <p class="dim">Implemented communication logic for remote control and integrated real-time hardware response loops.</p>
         </article>
+      </div>
+    </section>
 
-        <article class="card project-card">
-          <p class="project-index">Project 03</p>
-          <h3>SMD Pick-and-Place Machine (Ongoing)</h3>
-          <p>Designing an automated PCB assembly platform for component placement with precision alignment.</p>
-          <ul class="tag-list">
-            <li>Automation</li>
-            <li>Motion Control</li>
-            <li>Precision Systems</li>
-            <li>Embedded Software</li>
-          </ul>
-          <p class="dim">Current focus includes control strategy, coordinate alignment, and deterministic real-time operation.</p>
+    <section class="container reveal" aria-labelledby="interests-title">
+      <div class="section-heading">
+        <p class="eyebrow">Interests</p>
+        <h2 id="interests-title">What I keep building around</h2>
+      </div>
+
+      <div class="skill-columns">
+        <article class="card skill-card">
+          <h3>Digital Hardware & IC Design</h3>
+          <p>FPGAs, RTL design, pipelined architectures, and the path toward custom silicon.</p>
         </article>
-
-        <article class="card project-card">
-          <p class="project-index">Project 04</p>
-          <h3>RC Car and Control Systems</h3>
-          <p>Developed remote-controlled systems with embedded motor control and communication signaling.</p>
-          <ul class="tag-list">
-            <li>Embedded Control</li>
-            <li>Signal Processing</li>
-            <li>Wireless Control</li>
-          </ul>
-          <p class="dim">Implemented robust control loops for motor actuation and communication reliability.</p>
+        <article class="card skill-card">
+          <h3>Embedded Systems</h3>
+          <p>Firmware, real-time control, STM32, and making software talk to physical hardware.</p>
+        </article>
+        <article class="card skill-card">
+          <h3>Computing From First Principles</h3>
+          <p>Transistors to logic gates to ALUs to processors. Understanding the stack from the bottom up.</p>
         </article>
       </div>
     </section>
   </main>
 
   <footer class="site-footer container">
-    <p>Copyright <span id="year"></span> Ahmed Raza Ur Rehman.</p>
+    <p>Copyright <span id="year"></span> Ahmed Raza Ur Rehman. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>

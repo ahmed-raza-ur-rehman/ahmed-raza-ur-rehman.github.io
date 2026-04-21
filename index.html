@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="description" content="Ahmed Raza Ur Rehman is a Computer Engineering final-year student in Islamabad building hardware, firmware, FPGA, and systems projects from first principles.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ahmed Raza Ur Rehman - Computer Engineering student specializing in FPGA, embedded systems, and hardware design from first principles.">
   <meta name="keywords" content="Ahmed Raza Ur Rehman, Computer Engineering, FPGA, embedded systems, Verilog, STM32, PCB design, Islamabad">
   <meta name="theme-color" content="#0a0a0f">
   <link rel="canonical" href="https://ahmed-raza-ur-rehman.me/">
@@ -13,26 +13,14 @@
   <meta property="og:description" content="Hardware, firmware, FPGA, and systems work from first principles.">
   <meta property="og:image" content="https://ahmed-raza-ur-rehman.me/assets/images/og-cover.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ahmed Raza Ur Rehman | Computer Engineer">
-  <meta name="twitter:description" content="Hardware, firmware, FPGA, and systems work from first principles.">
-  <meta name="twitter:image" content="https://ahmed-raza-ur-rehman.me/assets/images/og-cover.png">
   <title>Ahmed Raza Ur Rehman | Computer Engineer</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cpath d='M16 40h32M16 24h16m8 0h8M24 16v32m16-24v24' stroke='%2300d4ff' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='24' r='4' fill='%232E6DA4'/%3E%3Ccircle cx='40' cy='40' r='4' fill='%2300d4ff'/%3E%3C/svg%3E">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cpath d='M16 40h32M16 24h16m8 0h8M24 16v32m16-24v24' stroke='%2300d4ff' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='24' r='4' fill='%232E6DA4'/%3E%3Ccircle cx='40' cy='40' r='4' fill='%2300d4ff'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" as="script" crossorigin="anonymous">
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/marked/marked.min.js" as="script" crossorigin="anonymous">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js" as="script" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/high-contrast.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="theme-dark">
+<body>
   <a class="skip-link" href="#main-content">Skip to content</a>
 
   <div class="site-backdrop" aria-hidden="true">
@@ -40,19 +28,16 @@
     <span class="site-backdrop__orb site-backdrop__orb--right"></span>
   </div>
   <div class="noise-overlay" aria-hidden="true"></div>
-  <div class="circuit-grid" aria-hidden="true"></div>
-  <div class="cursor-dot" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"></div>
 
   <header class="site-header">
     <nav class="site-nav" aria-label="Primary">
       <div class="nav-container container">
-        <a href="#top" class="brand hover-target" aria-label="Ahmed Raza Ur Rehman home">
+        <a href="index.html" class="brand" aria-label="Ahmed Raza Ur Rehman home">
           <span class="brand-mark">AR</span>
-          <span class="brand-text">Ahmed Raza<br>Ur Rehman</span>
+          <span class="brand-text">Ahmed Raza Ur Rehman</span>
         </a>
 
-        <button class="site-nav__toggle hover-target" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
           <span class="site-nav__toggle-lines" aria-hidden="true">
             <span></span>
             <span></span>
@@ -62,313 +47,229 @@
 
         <nav class="site-nav__panel" id="primary-navigation" aria-label="Primary links">
           <ul class="nav-links" role="list">
-            <li><a href="#top" class="hover-target active">Top</a></li>
-            <li><a href="#about" class="hover-target">About</a></li>
-            <li><a href="#skills" class="hover-target">Skills</a></li>
-            <li><a href="#projects" class="hover-target">Projects</a></li>
-            <li><a href="#lab" class="hover-target">Lab</a></li>
-            <li><a href="#games" class="hover-target">Games</a></li>
-            <li><a href="#blog" class="hover-target">Blog</a></li>
-            <li><a href="#contact" class="hover-target">Contact</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </nav>
       </div>
     </nav>
   </header>
 
-  <main id="main-content" class="page-shell">
-    <div id="smooth-wrapper" class="smooth-wrapper">
-      <div id="smooth-content" class="smooth-content">
-        <section class="hero-skeleton section reveal" id="top">
-          <div class="container hero-grid">
-            <div class="hero-copy">
-              <p class="eyebrow monospace-text">Computer Engineer <span class="cursor-badge">|</span> Hardware <span class="cursor-badge">|</span> Systems</p>
-              <h1 class="hero-title" id="hero-title">Ahmed Raza Ur Rehman.</h1>
-              <p class="hero-lead" id="hero-tagline">Building computing things from first principles.</p>
-              <p class="hero-copy-body">Final-year Computer Engineering student at KICSIT, Institute of Space Technology, Islamabad. I work from transistors upward: HDL, FPGAs, firmware, circuits, and the web systems around them.</p>
-              <div class="hero-actions">
-                <a class="btn btn-primary hover-target" href="#projects">See my work</a>
-                <a class="btn btn-outline hover-target" href="assets/cv/ahmed-raza-ur-rehman-cv.pdf" download>Download CV</a>
-              </div>
-              <div class="hero-socials">
-                <a class="hover-target" href="https://github.com/ahmed-raza-ur-rehman" target="_blank" rel="noreferrer">GitHub</a>
-                <a class="hover-target" href="https://www.linkedin.com/in/ahmed-raza-ur-rehman" target="_blank" rel="noreferrer">LinkedIn</a>
-                <a class="hover-target" href="mailto:ahmadrazarehman033@gmail.com">Email</a>
-              </div>
-              <dl class="hero-metrics" aria-label="Quick stats">
-                <div class="metric-card glass-card"><dt>CGPA</dt><dd>3.49 / 4.0</dd></div>
-                <div class="metric-card glass-card"><dt>Graduation</dt><dd>Sep 2026</dd></div>
-                <div class="metric-card glass-card"><dt>Location</dt><dd>Islamabad, Pakistan</dd></div>
-              </dl>
-            </div>
+  <main id="main-content">
+    <section class="hero-section section reveal" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Computer Engineer | Hardware | Systems</p>
+          <h1 class="hero-title">Ahmed Raza Ur Rehman</h1>
+          <p class="hero-lead">Building computing things from first principles.</p>
+          <p class="hero-copy-body">Final-year Computer Engineering student at KICSIT, Institute of Space Technology, Islamabad. I work from transistors upward: HDL, FPGAs, firmware, circuits, and the systems around them.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="projects.html">See my work</a>
+            <a class="btn btn-outline" href="assets/cv/ahmed-raza-ur-rehman-cv.pdf" download>Download CV</a>
+          </div>
+          <div class="hero-socials">
+            <a href="https://github.com/ahmed-raza-ur-rehman" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/ahmed-raza-ur-rehman" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="mailto:ahmadrazarehman033@gmail.com">Email</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-card"><span class="metric-label">CGPA</span><span class="metric-value">3.49 / 4.0</span></div>
+            <div class="metric-card"><span class="metric-label">Graduation</span><span class="metric-value">Sep 2026</span></div>
+            <div class="metric-card"><span class="metric-label">Location</span><span class="metric-value">Islamabad, PK</span></div>
+          </div>
+        </div>
 
-            <div class="hero-stage glass-card">
-              <div class="hero-canvas-shell">
-                <canvas id="hero-canvas" data-hero-canvas aria-label="Three.js hero scene" role="img"></canvas>
-                <div class="hero-canvas-fallback">
-                  <div class="pcb-frame"></div>
-                  <div class="pcb-core"></div>
-                </div>
-              </div>
-              <div class="glass-card-content hero-stage__content">
-                <p class="section-label">Hero scene</p>
-                <div class="hero-stage__notes">
-                  <p>Floating PCB geometry, circuit traces, and a slow camera drift.</p>
-                  <p>Graceful fallback on low-end devices and reduced-motion preferences.</p>
-                </div>
-              </div>
+        <div class="hero-visual">
+          <div class="hero-visual__inner">
+            <div class="avatar-orbit">
+              <div class="avatar-core">AR</div>
+              <span class="orbit-chip" style="--orbit-delay: 0s;">Verilog</span>
+              <span class="orbit-chip" style="--orbit-delay: -3s;">STM32</span>
+              <span class="orbit-chip" style="--orbit-delay: -6s;">PCB</span>
+              <span class="orbit-chip" style="--orbit-delay: -9s;">FPGA</span>
+              <span class="orbit-ring"></span>
             </div>
           </div>
-          <div class="scroll-indicator">Scroll</div>
-        </section>
-
-        <section class="section reveal" id="about">
-          <div class="container about-grid">
-            <div class="about-visual glass-card">
-              <div class="glass-card-content about-visual__inner">
-                <div class="avatar-orbit">
-                  <div class="avatar-core">AR</div>
-                  <span class="orbit-chip">Verilog</span>
-                  <span class="orbit-chip">STM32</span>
-                  <span class="orbit-chip">PCB</span>
-                  <span class="orbit-chip">Python</span>
-                  <span class="orbit-chip">FPGA</span>
-                  <span class="orbit-ring"></span>
-                </div>
-              </div>
-            </div>
-            <div class="about-copy">
-              <p class="section-label">About</p>
-              <h2 class="section-title">I build things. Especially computing things.</h2>
-              <p class="section-copy">I am a final-year Computer Engineering student at KICSIT (Institute of Space Technology), Islamabad, graduating September 2026 with a 3.49 GPA.</p>
-              <p class="section-copy">My hardware obsession started before university: builders like Ben Eater, discrete logic, and the slow work of understanding how a machine computes from the bottom up. That curiosity pulled me into HDL design, FPGA implementation, embedded firmware, PCB work, and enough software to make the hardware useful.</p>
-              <p class="section-copy">I have touched Unity, Blender, AutoCAD, Assembly, cybersecurity, web development, machine learning, and electronics. Not scattered curiosity. More like a compulsion to understand how all of it connects.</p>
-              <div class="stat-strip">
-                <div class="glass-card stat-card"><span class="stat-value" data-count="3.49">3.49</span><span class="stat-label">GPA</span></div>
-                <div class="glass-card stat-card"><span class="stat-value" data-count="8">8</span><span class="stat-label">Semesters</span></div>
-                <div class="glass-card stat-card"><span class="stat-value" data-count="12">12+</span><span class="stat-label">Projects</span></div>
-              </div>
-              <div class="status-pill">Currently open to: IC Design Training · Internships · Collaborations</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section reveal" id="skills">
-          <div class="container">
-            <div class="section-header">
-              <p class="section-label">Skills galaxy</p>
-              <h2 class="section-title">Filter by domain. Zoom into a cluster.</h2>
-              <p class="section-copy">Hover a node for detail, click a domain to focus it, click the background to zoom back out.</p>
-            </div>
-            <div class="filter-row" id="skill-filters">
-              <button class="filter-chip is-active" data-filter="all">All</button>
-              <button class="filter-chip" data-filter="hardware">Hardware</button>
-              <button class="filter-chip" data-filter="embedded">Embedded</button>
-              <button class="filter-chip" data-filter="electronics">Electronics</button>
-              <button class="filter-chip" data-filter="software">Software</button>
-              <button class="filter-chip" data-filter="creative">Creative</button>
-            </div>
-            <div class="skill-galaxy glass-card">
-              <div class="glass-card-content">
-                <div id="skill-galaxy" class="skill-galaxy__stage" aria-live="polite"></div>
-                <aside class="skill-detail" id="skill-detail">
-                  <p class="skill-detail__label">Hover a node</p>
-                  <h3>Skill detail</h3>
-                  <p>Details appear here.</p>
-                </aside>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section reveal" id="projects">
-          <div class="container">
-            <div class="section-header">
-              <p class="section-label">Projects</p>
-              <h2 class="section-title">Three projects. Different themes. Same standard.</h2>
-            </div>
-            <div class="project-grid" id="projects-grid"></div>
-          </div>
-        </section>
-
-        <section class="section reveal" id="interests">
-          <div class="container">
-            <div class="section-header">
-              <p class="section-label">Interests and domains</p>
-              <h2 class="section-title">The wider map of what I keep building around.</h2>
-            </div>
-            <div id="interest-bento" class="interest-bento"></div>
-          </div>
-        </section>
-
-        <section class="section reveal" id="lab">
-          <div class="container">
-            <div class="section-header">
-              <p class="section-label">Interaction lab</p>
-              <h2 class="section-title">Camera, hands, face, keyboard, voice.</h2>
-              <p class="section-copy">Client-side only, opt-in only, and fully recoverable if any capability is missing.</p>
-            </div>
-            <div class="lab-grid">
-              <article class="glass-card lab-card">
-                <div class="glass-card-content">
-                  <p class="lab-chip">Live</p>
-                  <h3>No data leaves your device.</h3>
-                  <p>Camera and gesture experiences are local-first. If a feature is unsupported, the interface falls back cleanly.</p>
-                  <div class="lab-actions">
-                    <button class="btn btn-primary hover-target" id="camera-enable">Enable camera</button>
-                    <button class="btn btn-outline hover-target" id="camera-selfie">Take a selfie</button>
-                  </div>
-                </div>
-              </article>
-              <article class="glass-card lab-card lab-card--wide">
-                <div class="glass-card-content">
-                  <div class="camera-shell">
-                    <video id="camera-video" autoplay playsinline muted></video>
-                    <canvas id="camera-overlay"></canvas>
-                  </div>
-                  <div class="lab-status" id="camera-status">Camera is off.</div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section class="section reveal" id="games">
-          <div class="container">
-            <div class="section-header">
-              <p class="section-label">Games and leaderboard</p>
-              <h2 class="section-title">Small games, serious interface.</h2>
-              <p class="section-copy">Inspired by the AIDE logic and memory modules, but tuned for a portfolio audience.</p>
-            </div>
-            <div class="games-shell">
-              <div id="game-center" class="game-grid"></div>
-              <aside class="glass-card leaderboard-card">
-                <div class="glass-card-content">
-                  <p class="lab-chip">Leaderboard</p>
-                  <h3>Top scores</h3>
-                  <ol id="leaderboard" class="leaderboard-list"></ol>
-                </div>
-              </aside>
-            </div>
-          </div>
-        </section>
-
-        <section class="section reveal" id="blog">
-          <div class="container">
-            <div class="section-header">
-              <p class="section-label">Blog and updates</p>
-              <h2 class="section-title">Short notes, project updates, and hardware logs.</h2>
-              <p class="section-copy"><a href="blog/index.html">Open the blog</a> for the full archive.</p>
-            </div>
-            <div id="blog-preview" class="blog-preview"></div>
-          </div>
-        </section>
-
-        <section class="section reveal" id="contact">
-          <div class="container contact-grid">
-            <div class="contact-copy">
-              <p class="section-label">Contact</p>
-              <h2 class="section-title">Let's build something.</h2>
-              <p class="section-copy">Open to IC design training, internships, collaborations, and technically serious conversations.</p>
-              <div class="contact-card glass-card">
-                <div class="glass-card-content">
-                  <p>Email: <a href="mailto:ahmadrazarehman033@gmail.com">ahmadrazarehman033@gmail.com</a></p>
-                  <p>Phone: <a href="tel:+923109391744">+92 310 9391744</a></p>
-                  <p>Location: Islamabad, Pakistan</p>
-                </div>
-              </div>
-            </div>
-            <form class="glass-card contact-form" id="contact-form">
-              <div class="glass-card-content">
-                <label>Name <input type="text" name="name" required></label>
-                <label>Email <input type="email" name="email" required></label>
-                <label>Subject
-                  <select name="subject">
-                    <option>General</option>
-                    <option>Collaboration</option>
-                    <option>Opportunity</option>
-                    <option>Other</option>
-                  </select>
-                </label>
-                <label>Message <textarea name="message" rows="6" required></textarea></label>
-                <button class="btn btn-primary hover-target" type="submit">Send message</button>
-                <p class="form-note" id="contact-status">Typically replies within 24 hours.</p>
-              </div>
-            </form>
-          </div>
-        </section>
-
-        <footer class="site-footer section" id="footer">
-          <div class="container footer-shell">
-            <div>
-              <p class="footer-brand">Ahmed Raza Ur Rehman</p>
-              <p class="footer-note">Built with Three.js, GSAP, MediaPipe-ready hooks, and local-first CMS scaffolding.</p>
-            </div>
-            <div class="footer-links">
-              <a href="#top">Top</a>
-              <a href="#blog">Blog</a>
-              <a href="admin/index.html">Admin</a>
-              <a href="blog/index.html">Blog index</a>
-            </div>
-            <p class="footer-note">Last updated <span data-year></span>.</p>
-          </div>
-        </footer>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <section class="section reveal" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Technical Skills</p>
+          <h2 class="section-title">Core competencies across the stack</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Hardware & FPGA</h3>
+            <ul class="skill-list">
+              <li>Verilog / SystemVerilog</li>
+              <li>VHDL</li>
+              <li>Digital Logic Design</li>
+              <li>Computer Architecture</li>
+              <li>FPGA Implementation</li>
+              <li>Pipelined Processor Design</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3>Embedded Systems</h3>
+            <ul class="skill-list">
+              <li>C / C++</li>
+              <li>STM32 Microcontrollers</li>
+              <li>Stepper Motor Control</li>
+              <li>Sensor Integration</li>
+              <li>Assembly Language</li>
+              <li>Real-time Firmware</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3>Electronics & PCB</h3>
+            <ul class="skill-list">
+              <li>PCB Design</li>
+              <li>Circuit Analysis</li>
+              <li>Proteus Simulation</li>
+              <li>Soldering & Assembly</li>
+              <li>Transistor-Level Design</li>
+              <li>Discrete Logic</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3>Software & Tools</h3>
+            <ul class="skill-list">
+              <li>Python</li>
+              <li>JavaScript</li>
+              <li>Git / GitHub</li>
+              <li>Linux CLI</li>
+              <li>Databases (SQL/NoSQL)</li>
+              <li>Xilinx ISE / Vivado</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="featured-projects">
+      <div class="container">
+        <div class="section-header section-header--inline">
+          <div>
+            <p class="section-label">Featured Work</p>
+            <h2 class="section-title">Projects that define my approach</h2>
+          </div>
+          <a href="projects.html" class="text-link">View all projects</a>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-card__header">
+              <span class="project-tag">FPGA</span>
+              <span class="project-status">Completed</span>
+            </div>
+            <h3>Pipelined Processor on FPGA</h3>
+            <p>Implemented a minimal pipelined processor architecture on FPGA, covering datapath construction, control logic, simulation, synthesis, and timing analysis.</p>
+            <div class="project-tech">
+              <span>Verilog</span>
+              <span>VHDL</span>
+              <span>Xilinx ISE</span>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-card__header">
+              <span class="project-tag">Embedded</span>
+              <span class="project-status project-status--progress">In Progress</span>
+            </div>
+            <h3>Automatic SMD Pick & Place Machine</h3>
+            <p>Final year project designing a PCB assembly machine with STM32 firmware, motion control, custom boards, and hardware-software co-design.</p>
+            <div class="project-tech">
+              <span>STM32</span>
+              <span>C</span>
+              <span>PCB Design</span>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-card__header">
+              <span class="project-tag">Research</span>
+              <span class="project-status project-status--ongoing">Ongoing</span>
+            </div>
+            <h3>Building Computing From Transistors</h3>
+            <p>Following builders like Ben Eater to understand computing from the bottom up - from transistors to logic gates to processors.</p>
+            <div class="project-tech">
+              <span>Discrete Logic</span>
+              <span>Breadboarding</span>
+              <span>First Principles</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="interests">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Areas of Interest</p>
+          <h2 class="section-title">The wider map of what I build around</h2>
+        </div>
+        <div class="interests-grid">
+          <div class="interest-card">
+            <h3>Digital Hardware & IC Design</h3>
+            <p>FPGAs, RTL design, pipelined architectures, and the path toward custom silicon.</p>
+          </div>
+          <div class="interest-card">
+            <h3>Embedded Systems</h3>
+            <p>Firmware, real-time control, STM32, and making software talk to physical hardware.</p>
+          </div>
+          <div class="interest-card">
+            <h3>PCB Design & Electronics</h3>
+            <p>Custom boards, circuit design, soldering, and hardware that actually works.</p>
+          </div>
+          <div class="interest-card">
+            <h3>Computing From First Principles</h3>
+            <p>Transistors to logic gates to ALUs to processors. Understanding the stack from the bottom up.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="contact-cta">
+      <div class="container">
+        <div class="cta-card">
+          <div class="cta-content">
+            <p class="section-label">Get in Touch</p>
+            <h2 class="section-title">Let's build something together</h2>
+            <p>Open to IC design training, internships, collaborations, and technically serious conversations.</p>
+            <div class="cta-actions">
+              <a href="contact.html" class="btn btn-primary">Contact Me</a>
+              <a href="mailto:ahmadrazarehman033@gmail.com" class="btn btn-outline">Send Email</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <button class="chat-bubble hover-target" id="chat-open" type="button" aria-label="Open chat">Chat</button>
-  <aside class="chat-panel glass-card" id="chat-panel" aria-hidden="true">
-    <div class="glass-card-content">
-      <div class="chat-panel__header">
-        <strong>Leave a message</strong>
-        <button class="chat-close" id="chat-close" type="button">Close</button>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <p class="footer-name">Ahmed Raza Ur Rehman</p>
+        <p class="footer-tagline">Computer Engineering Student</p>
       </div>
-      <div id="chat-thread" class="chat-thread"></div>
-      <form id="chat-form" class="chat-form">
-        <input type="text" name="name" placeholder="Name optional">
-        <input type="email" name="email" placeholder="Email optional">
-        <textarea name="message" rows="3" placeholder="Write a note"></textarea>
-        <button class="btn btn-primary hover-target" type="submit">Send</button>
-      </form>
-    </div>
-  </aside>
-
-  <div class="newsletter-banner glass-card" id="newsletter-banner" hidden>
-    <div class="glass-card-content newsletter-banner__content">
-      <div>
-        <strong>Get project notes by email</strong>
-        <p>Short updates when I publish hardware notes or portfolio changes.</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="education.html">Education</a>
+        <a href="contact.html">Contact</a>
       </div>
-      <form id="newsletter-form" class="newsletter-form">
-        <input type="text" name="name" placeholder="Name">
-        <input type="email" name="email" placeholder="Email" required>
-        <button class="btn btn-primary hover-target" type="submit">Subscribe</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="terminal-overlay" id="terminal-overlay" hidden>
-    <div class="terminal-shell glass-card">
-      <div class="glass-card-content">
-        <div class="terminal-header">
-          <strong>Help terminal</strong>
-          <button class="chat-close" id="terminal-close" type="button">Close</button>
-        </div>
-        <pre id="terminal-output"></pre>
+      <div class="footer-social">
+        <a href="https://github.com/ahmed-raza-ur-rehman" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/ahmed-raza-ur-rehman" target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
+      <p class="footer-copyright">&copy; <span id="year"></span> Ahmed Raza Ur Rehman. All rights reserved.</p>
     </div>
-  </div>
+  </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="js/site-data.js"></script>
-  <script src="js/security-improvements.js"></script>
-  <script src="js/performance-optimizations.js"></script>
-  <script src="js/accessibility-improvements.js"></script>
-  <script src="js/error-handling.js"></script>
-  <script src="js/cursor.js"></script>
-  <script src="js/main.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
