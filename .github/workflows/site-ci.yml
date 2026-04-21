@@ -18,24 +18,49 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Validate site structure and references
-        run: python scripts/validate_site.py
-
-      - name: Check critical files
+      - name: Check critical files exist
         run: |
-          test -f index.html
-          test -f blog/index.html
-          test -f blog/post.html
-          test -f admin/index.html
-          test -f robots.txt
-          test -f sitemap.xml
+          test -f index.html || (echo "Missing index.html" && exit 1)
+          test -f about.html || (echo "Missing about.html" && exit 1)
+          test -f projects.html || (echo "Missing projects.html" && exit 1)
+          test -f education.html || (echo "Missing education.html" && exit 1)
+          test -f products.html || (echo "Missing products.html" && exit 1)
+          test -f contact.html || (echo "Missing contact.html" && exit 1)
+          test -f styles.css || (echo "Missing styles.css" && exit 1)
+          test -f robots.txt || (echo "Missing robots.txt" && exit 1)
+          test -f sitemap.xml || (echo "Missing sitemap.xml" && exit 1)
+          echo "All critical files present."
 
-      - name: Link check (internal and external)
+      - name: Validate HTML structure
+        run: |
+          # Check that all HTML files have basic required elements
+          for file in *.html; do
+            grep -q "<!DOCTYPE html>" "$file" || (echo "Missing DOCTYPE in $file" && exit 1)
+            grep -q " "<html" "$file" || (echo "Missing html tag in $file" && exit 1)
+            grep -q " "<head>" "$file" || (echo "Missing head tag in $file" && exit 1)
+            grep -q " "<body>" "$file" || (echo "Missing body tag in $file" && exit 1)
+            grep -q "styles.css" "$file" || (echo "Missing styles.css link in $file" && exit 1)
+          done
+          echo "All HTML files have valid structure."
+
+      - name: Check internal links
+        run: |
+          # Check that all internal page links are valid
+          for file in *.html; do
+            # Extract href links that point to local html files
+            grep -oE 'href="[^"]*\.html"' "$file" | grep -v 'http' | sed 's/href="//;s/"$//' | while read link; do
+              if [ "$link" != "index.html" ] && [ "$link" != "about.html" ] && [ "$link" != "projects.html" ] && [ "$link" != "education.html" ] && [ "$link" != "products.html" ] && [ "$link" != "contact.html" ]; then
+                # Check if file exists
+                if [ ! -f "$link" ]; then
+                  echo "Broken link in $file: $link"
+                  exit 1
+                fi
+              fi
+            done
+          done
+          echo "All internal links valid."
+
+      - name: Link check (external)
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
@@ -53,7 +78,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: site-ci-report
-          path: |
-            .lycheeout
-            scripts/validate_site.py
+          path: .lycheeout
           if-no-files-found: ignore
