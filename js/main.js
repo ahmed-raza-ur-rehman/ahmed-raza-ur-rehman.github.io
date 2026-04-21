@@ -784,11 +784,11 @@
 
   function initChat() {
     const open = document.getElementById('chat-open');
-    const close = document.getElementById('chat-close');
+    const closeButtons = Array.from(document.querySelectorAll('#chat-close, #chat_close, #chat-panel .chat-close'));
     const panel = document.getElementById('chat-panel');
     const thread = document.getElementById('chat-thread');
     const form = document.getElementById('chat-form');
-    if (!open || !close || !panel || !thread || !form) {
+    if (!open || !panel || !thread || !form) {
       return;
     }
 
@@ -808,11 +808,12 @@
       panel.setAttribute('aria-hidden', 'false');
       renderThread();
     });
-    close.addEventListener('click', closeChat);
+    closeButtons.forEach((button) => button.addEventListener('click', closeChat));
 
     // Defensive delegated fallback in case close button gets re-rendered.
     document.addEventListener('click', (event) => {
-      if (event.target instanceof Element && event.target.closest('#chat-close')) {
+      const target = event.target instanceof Element ? event.target : event.target?.parentElement;
+      if (target && target.closest('#chat-close, #chat_close, #chat-panel .chat-close')) {
         closeChat();
       }
     });
@@ -875,8 +876,8 @@
   function initKeyboardEasterEggs() {
     const overlay = document.getElementById('terminal-overlay');
     const output = document.getElementById('terminal-output');
-    const close = document.getElementById('terminal-close');
-    if (!overlay || !output || !close) {
+    const closeButtons = Array.from(document.querySelectorAll('#terminal-close, #terminal_close, .terminal-header .chat-close'));
+    if (!overlay || !output) {
       return;
     }
 
@@ -911,11 +912,12 @@
       }
     };
 
-    close.addEventListener('click', closeOverlay);
+    closeButtons.forEach((button) => button.addEventListener('click', closeOverlay));
 
     // Defensive delegated fallback in case close button gets re-rendered.
     document.addEventListener('click', (event) => {
-      if (event.target instanceof Element && event.target.closest('#terminal-close')) {
+      const target = event.target instanceof Element ? event.target : event.target?.parentElement;
+      if (target && target.closest('#terminal-close, #terminal_close, .terminal-header .chat-close')) {
         closeOverlay();
       }
     });
