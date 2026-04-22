@@ -26,6 +26,10 @@
   const revealElements = document.querySelectorAll('.reveal');
   
   if ('IntersectionObserver' in window) {
+    revealElements.forEach(function(el) {
+      el.classList.add('animate');
+    });
+
     const revealObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {

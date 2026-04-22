@@ -27,6 +27,7 @@ jobs:
           test -f products.html || (echo "Missing products.html" && exit 1)
           test -f contact.html || (echo "Missing contact.html" && exit 1)
           test -f styles.css || (echo "Missing styles.css" && exit 1)
+          test -f CNAME || (echo "Missing CNAME" && exit 1)
           test -f robots.txt || (echo "Missing robots.txt" && exit 1)
           test -f sitemap.xml || (echo "Missing sitemap.xml" && exit 1)
           echo "All critical files present."
