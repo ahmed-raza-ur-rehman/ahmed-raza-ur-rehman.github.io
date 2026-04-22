@@ -35,11 +35,14 @@ jobs:
         run: |
           # Check that all HTML files have basic required elements
           for file in *.html; do
-            grep -q "<!DOCTYPE html>" "$file" || (echo "Missing DOCTYPE in $file" && exit 1)
-            grep -q " "<html" "$file" || (echo "Missing html tag in $file" && exit 1)
-            grep -q " "<head>" "$file" || (echo "Missing head tag in $file" && exit 1)
-            grep -q " "<body>" "$file" || (echo "Missing body tag in $file" && exit 1)
-            grep -q "styles.css" "$file" || (echo "Missing styles.css link in $file" && exit 1)
+            grep -q '<!DOCTYPE html>' "$file" || (echo "Missing DOCTYPE in $file" && exit 1)
+            grep -q '<html' "$file" || (echo "Missing html tag in $file" && exit 1)
+            grep -q '</html>' "$file" || (echo "Missing closing html tag in $file" && exit 1)
+            grep -q '<head>' "$file" || (echo "Missing head tag in $file" && exit 1)
+            grep -q '</head>' "$file" || (echo "Missing closing head tag in $file" && exit 1)
+            grep -q '<body>' "$file" || (echo "Missing body tag in $file" && exit 1)
+            grep -q '</body>' "$file" || (echo "Missing closing body tag in $file" && exit 1)
+            grep -q 'styles.css' "$file" || (echo "Missing styles.css link in $file" && exit 1)
           done
           echo "All HTML files have valid structure."
 

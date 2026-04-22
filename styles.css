@@ -698,12 +698,17 @@ h1, h2, h3 {
    Scroll Reveal Animation
    -------------------------------------------------------------------------- */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
 }
 
-.reveal.visible {
+.reveal.animate {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.reveal.animate.visible {
   opacity: 1;
   transform: translateY(0);
 }
