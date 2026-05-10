@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 
 const nodes = [
   { id: "idea", label: "IDEA", icon: "💡", tools: ["Problem Analysis", "Requirements"], x: 0 },
@@ -13,6 +13,29 @@ const nodes = [
 
 export function EngineeringFlow() {
   const [activeNode, setActiveNode] = useState<string | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [containerWidth, setContainerWidth] = useState(1000)
+
+  useEffect(() => {
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.offsetWidth)
+    }
+    const handleResize = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth)
+      }
+    }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  // Calculate positions based on container width
+  const getX = (index: number) => {
+    const padding = containerWidth * 0.15
+    const availableWidth = containerWidth - padding * 2
+    const spacing = availableWidth / (nodes.length - 1)
+    return padding + spacing * index
+  }
 
   return (
     <section className="py-32 relative overflow-hidden">
@@ -30,7 +53,7 @@ export function EngineeringFlow() {
         </motion.div>
 
         {/* Node graph */}
-        <div className="relative">
+        <div ref={containerRef} className="relative h-40">
           {/* Connection lines */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
             <defs>
@@ -39,13 +62,13 @@ export function EngineeringFlow() {
                 <stop offset="100%" stopColor="#00E0FF" />
               </linearGradient>
             </defs>
-            {nodes.slice(0, -1).map((node, i) => (
+            {nodes.slice(0, -1).map((_, i) => (
               <motion.line
                 key={i}
-                x1={`${20 + i * 15}%`}
-                y1="50%"
-                x2={`${20 + (i + 1) * 15}%`}
-                y2="50%"
+                x1={getX(i)}
+                y1={40}
+                x2={getX(i + 1)}
+                y2={40}
                 stroke="url(#flowGrad)"
                 strokeWidth="2"
                 strokeDasharray="5,5"
@@ -58,11 +81,12 @@ export function EngineeringFlow() {
           </svg>
 
           {/* Nodes */}
-          <div className="flex justify-between items-center relative z-10">
+          <div className="absolute inset-0 flex justify-between items-start">
             {nodes.map((node, i) => (
               <motion.div
                 key={node.id}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center absolute"
+                style={{ left: getX(i), transform: "translateX(-50%)" }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -89,11 +113,11 @@ export function EngineeringFlow() {
 
                 {/* Tools popup */}
                 <motion.div
-                  className="absolute top-24 glass rounded-xl p-3 text-center opacity-0 pointer-events-none"
+                  className="absolute top-28 glass rounded-xl p-3 text-center opacity-0 pointer-events-none whitespace-nowrap"
                   animate={{ opacity: activeNode === node.id ? 1 : 0, y: activeNode === node.id ? 0 : -10 }}
                 >
                   {node.tools.map((tool) => (
-                    <p key={tool} className="text-xs text-gray-400 whitespace-nowrap">{tool}</p>
+                    <p key={tool} className="text-xs text-gray-400">{tool}</p>
                   ))}
                 </motion.div>
               </motion.div>

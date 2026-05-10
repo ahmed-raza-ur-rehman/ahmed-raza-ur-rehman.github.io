@@ -53,33 +53,30 @@ export function EnergyStream() {
         />
       ))}
 
-      {/* Plasma threads */}
-      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="plasma" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#00FF88" stopOpacity="0" />
-            <stop offset="50%" stopColor="#00E0FF" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#00FF88" stopOpacity="0" />
-          </linearGradient>
-        </defs>
+      {/* Plasma threads - using CSS-based animation instead of SVG path percentages */}
+      <div className="absolute inset-0">
         {[...Array(3)].map((_, i) => (
-          <motion.path
+          <motion.div
             key={i}
-            d={`M ${50 + i * 5}% 0 Q ${50 + i * 10}% 50% ${50 + i * 5}% 100%`}
-            stroke="url(#plasma)"
-            strokeWidth="1"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.5 }}
+            className="absolute h-full w-px"
+            style={{
+              left: `${50 + i * 5}%`,
+              background: `linear-gradient(180deg, transparent 0%, rgba(0, 255, 136, ${0.1 + i * 0.1}) 30%, rgba(0, 224, 255, ${0.2 + i * 0.1}) 50%, rgba(0, 255, 136, ${0.1 + i * 0.1}) 70%, transparent 100%)`,
+              filter: "blur(2px)",
+            }}
+            animate={{
+              opacity: [0.3, 0.6, 0.3],
+              scaleX: [1, 1.5, 1],
+            }}
             transition={{
-              duration: 2,
+              duration: 3,
               repeat: Infinity,
               delay: i * 0.3,
               ease: "easeInOut",
             }}
           />
         ))}
-      </svg>
+      </div>
     </div>
   );
 }
