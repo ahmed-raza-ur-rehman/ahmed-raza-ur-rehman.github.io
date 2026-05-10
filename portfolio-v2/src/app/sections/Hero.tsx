@@ -1,11 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ParticleField } from "../components/ParticleField";
+import dynamic from "next/dynamic";
 import { EnergyStream } from "../components/EnergyStream";
 import { TiltCard } from "../components/TiltCard";
 import { MagneticButton } from "../components/MagneticButton";
 import { ChevronDown } from "lucide-react";
+
+// Dynamically import ParticleField to avoid SSR issues with Three.js
+const ParticleField = dynamic(
+  () => import("../components/ParticleField").then((mod) => mod.ParticleField),
+  { ssr: false }
+);
 
 export function Hero() {
   return (

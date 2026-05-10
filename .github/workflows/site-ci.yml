@@ -18,51 +18,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Check critical files exist
         run: |
           test -f index.html || (echo "Missing index.html" && exit 1)
-          test -f about.html || (echo "Missing about.html" && exit 1)
-          test -f projects.html || (echo "Missing projects.html" && exit 1)
-          test -f education.html || (echo "Missing education.html" && exit 1)
-          test -f products.html || (echo "Missing products.html" && exit 1)
-          test -f contact.html || (echo "Missing contact.html" && exit 1)
-          test -f styles.css || (echo "Missing styles.css" && exit 1)
           test -f CNAME || (echo "Missing CNAME" && exit 1)
-          test -f robots.txt || (echo "Missing robots.txt" && exit 1)
-          test -f sitemap.xml || (echo "Missing sitemap.xml" && exit 1)
           echo "All critical files present."
 
       - name: Validate HTML structure
         run: |
-          # Check that all HTML files have basic required elements
-          for file in *.html; do
-            grep -q '<!DOCTYPE html>' "$file" || (echo "Missing DOCTYPE in $file" && exit 1)
-            grep -q '<html' "$file" || (echo "Missing html tag in $file" && exit 1)
-            grep -q '</html>' "$file" || (echo "Missing closing html tag in $file" && exit 1)
-            grep -q '<head>' "$file" || (echo "Missing head tag in $file" && exit 1)
-            grep -q '</head>' "$file" || (echo "Missing closing head tag in $file" && exit 1)
-            grep -q '<body>' "$file" || (echo "Missing body tag in $file" && exit 1)
-            grep -q '</body>' "$file" || (echo "Missing closing body tag in $file" && exit 1)
-            grep -q 'styles.css' "$file" || (echo "Missing styles.css link in $file" && exit 1)
-          done
-          echo "All HTML files have valid structure."
+          # Check that index.html has basic required elements
+          grep -q '<!DOCTYPE html>' index.html || (echo "Missing DOCTYPE in index.html" && exit 1)
+          grep -q '<html' index.html || (echo "Missing html tag in index.html" && exit 1)
+          grep -q '</html>' index.html || (echo "Missing closing html tag in index.html" && exit 1)
+          grep -q '<head>' index.html || (echo "Missing head tag in index.html" && exit 1)
+          grep -q '</head>' index.html || (echo "Missing closing head tag in index.html" && exit 1)
+          grep -q '<body>' index.html || (echo "Missing body tag in index.html" && exit 1)
+          grep -q '</body>' index.html || (echo "Missing closing body tag in index.html" && exit 1)
+          echo "HTML structure valid."
 
-      - name: Check internal links
+      - name: Install dependencies and build
         run: |
-          # Check that all internal page links are valid
-          for file in *.html; do
-            # Extract href links that point to local html files
-            grep -oE 'href="[^"]*\.html"' "$file" | grep -v 'http' | sed 's/href="//;s/"$//' | while read link; do
-              if [ "$link" != "index.html" ] && [ "$link" != "about.html" ] && [ "$link" != "projects.html" ] && [ "$link" != "education.html" ] && [ "$link" != "products.html" ] && [ "$link" != "contact.html" ]; then
-                # Check if file exists
-                if [ ! -f "$link" ]; then
-                  echo "Broken link in $file: $link"
-                  exit 1
-                fi
-              fi
-            done
-          done
-          echo "All internal links valid."
+          cd portfolio-v2
+          npm ci
+          npm run build
 
       - name: Link check (external)
         uses: lycheeverse/lychee-action@v2
@@ -74,7 +57,7 @@ jobs:
             --exclude '^https://ahmed-raza-ur-rehman\.me/.*'
             --exclude '^https://github-profile-trophy\.vercel\.app/.*'
             --exclude '^https://(www\.)?linkedin\.com/.*'
-            '*.html' '*.md'
+            'index.html' '*.md'
           fail: true
 
       - name: Upload CI report

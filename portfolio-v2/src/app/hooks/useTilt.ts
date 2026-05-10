@@ -18,7 +18,7 @@ export function useTilt(maxTilt: number = 15) {
   });
 
   const handleMouseMove = useCallback(
-    (e: React.MouseEventEvent<HTMLElement>) => {
+    (e: React.MouseEvent<HTMLElement>) => {
       const rect = e.currentTarget.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = (e.clientY - rect.top) / rect.height;

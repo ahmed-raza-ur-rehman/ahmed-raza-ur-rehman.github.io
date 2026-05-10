@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 function Particles() {
-  const mesh = useRefRef<THREE.Points>(null);
+  const mesh = useRef<THREE.Points>(null);
 
   const count = 3000;
 
@@ -26,10 +26,17 @@ function Particles() {
     return [positions, velocities];
   }, []);
 
+  const geometry = useMemo(() => {
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    return geo;
+  }, [positions]);
+
   useFrame((state) => {
     if (!mesh.current) return;
 
-    const positionArray = mesh.current.geometry.attributes.position.array as Float32Array;
+    const positionAttribute = mesh.current.geometry.attributes.position;
+    const positionArray = positionAttribute.array as Float32Array;
 
     for (let i = 0; i < count; i++) {
       positionArray[i * 3] += velocities[i * 3];
@@ -41,20 +48,12 @@ function Particles() {
       if (Math.abs(positionArray[i * 3 + 2]) > 5) velocities[i * 3 + 2] *= -1;
     }
 
-    mesh.current.geometry.attributes.position.needsUpdate = true;
+    positionAttribute.needsUpdate = true;
     mesh.current.rotation.y = state.clock.elapsedTime * 0.02;
   });
 
   return (
-    <points ref={mesh}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={count}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
+    <points ref={mesh} geometry={geometry}>
       <pointsMaterial
         size={0.03}
         color="#00FF88"
@@ -66,17 +65,35 @@ function Particles() {
   );
 }
 
+function ParticleCanvas() {
+  return (
+    <Canvas
+      camera={{ position: [0, 0, 8], fov: 60 }}
+      dpr={[1, 2]}
+      gl={{ antialias: true, alpha: true }}
+    >
+      <ambientLight intensity={0.5} />
+      <Particles />
+    </Canvas>
+  );
+}
+
 export function ParticleField() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-black via-black to-transparent" />
+    );
+  }
+
   return (
     <div className="absolute inset-0 z-0">
-      <Canvas
-        camera={{ position: [0, 0, 8], fov: 60 }}
-        dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true }}
-      >
-        <ambientLight intensity={0.5} />
-        <Particles />
-      </Canvas>
+      <ParticleCanvas />
     </div>
   );
 }
