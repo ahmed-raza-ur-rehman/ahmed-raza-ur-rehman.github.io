@@ -1,80 +1,68 @@
 "use client";
 
-import { useRef, useMemo, useState, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import * as THREE from "three";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-function Particles() {
-  const mesh = useRef<THREE.Points>(null);
-
-  const count = 3000;
-
-  const [positions, velocities] = useMemo(() => {
-    const positions = new Float32Array(count * 3);
-    const velocities = new Float32Array(count * 3);
-
-    for (let i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 20;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
-
-      velocities[i * 3] = (Math.random() - 0.5) * 0.01;
-      velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.01;
-      velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.01;
-    }
-
-    return [positions, velocities];
-  }, []);
-
-  const geometry = useMemo(() => {
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    return geo;
-  }, [positions]);
-
-  useFrame((state) => {
-    if (!mesh.current) return;
-
-    const positionAttribute = mesh.current.geometry.attributes.position;
-    const positionArray = positionAttribute.array as Float32Array;
-
-    for (let i = 0; i < count; i++) {
-      positionArray[i * 3] += velocities[i * 3];
-      positionArray[i * 3 + 1] += velocities[i * 3 + 1];
-      positionArray[i * 3 + 2] += velocities[i * 3 + 2];
-
-      if (Math.abs(positionArray[i * 3]) > 10) velocities[i * 3] *= -1;
-      if (Math.abs(positionArray[i * 3 + 1]) > 10) velocities[i * 3 + 1] *= -1;
-      if (Math.abs(positionArray[i * 3 + 2]) > 5) velocities[i * 3 + 2] *= -1;
-    }
-
-    positionAttribute.needsUpdate = true;
-    mesh.current.rotation.y = state.clock.elapsedTime * 0.02;
-  });
-
-  return (
-    <points ref={mesh} geometry={geometry}>
-      <pointsMaterial
-        size={0.03}
-        color="#00FF88"
-        transparent
-        opacity={0.6}
-        sizeAttenuation
-      />
-    </points>
-  );
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  duration: number;
+  delay: number;
+  opacity: number;
 }
 
-function ParticleCanvas() {
+function generateParticles(count: number): Particle[] {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2 + 1,
+    duration: Math.random() * 20 + 10,
+    delay: Math.random() * 5,
+    opacity: Math.random() * 0.5 + 0.2,
+  }));
+}
+
+function ParticleBackground() {
+  const [particles, setParticles] = useState<Particle[]>([]);
+
+  useEffect(() => {
+    setParticles(generateParticles(50));
+  }, []);
+
   return (
-    <Canvas
-      camera={{ position: [0, 0, 8], fov: 60 }}
-      dpr={[1, 2]}
-      gl={{ antialias: true, alpha: true }}
-    >
-      <ambientLight intensity={0.5} />
-      <Particles />
-    </Canvas>
+    <div className="absolute inset-0 overflow-hidden">
+      {particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className="absolute rounded-full bg-neon-green"
+          style={{
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+            width: particle.size,
+            height: particle.size,
+            opacity: particle.opacity,
+            boxShadow: `0 0 ${particle.size * 2}px rgba(0, 255, 136, 0.5)`,
+          }}
+          animate={{
+            y: [0, -100, 0],
+            x: [0, Math.random() * 50 - 25, 0],
+            opacity: [particle.opacity, particle.opacity * 1.5, particle.opacity],
+          }}
+          transition={{
+            duration: particle.duration,
+            delay: particle.delay,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      ))}
+      
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black pointer-events-none" />
+    </div>
   );
 }
 
@@ -93,7 +81,7 @@ export function ParticleField() {
 
   return (
     <div className="absolute inset-0 z-0">
-      <ParticleCanvas />
+      <ParticleBackground />
     </div>
   );
 }
