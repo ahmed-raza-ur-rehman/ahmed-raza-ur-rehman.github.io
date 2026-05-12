@@ -14,46 +14,61 @@ const LinkedInIcon = () => (
 const linkedInPosts = [
   {
     id: 1,
-    content: "I have completed the AI Developer Path on AMD Academy. Thanks AMD for this opportunity.",
+    content: "73 out of 100. Alhamdulillah. Not because 73 is good. But because I walked out thinking I barely got 15, only the ones I was completely sure about. Then I saw the percentile - 98.5th among 40,700+ students from 119 universities. These were absolute fundamentals that the industry expects.",
+    image: "/images/certs/1777616185012.jpg",
+    date: "May 2026",
+    likes: 128,
+    comments: 34,
+    url: "#",
+    tags: ["#NSCT", "#HEC", "#NationalSkillsTest"],
+  },
+  {
+    id: 2,
+    content: "I have completed the AI Developer Path on AMD Academy. Thanks AMD for this opportunity. Also completed courses on AMD Instinct Accelerators and running GPT-OSS 120B with vLLM on MI300X GPU.",
     image: "/images/certs/1778157924960.jpeg",
     date: "May 2026",
     likes: 45,
     comments: 8,
     url: "https://amdai.netexam.com/LinkedInShareArticle/31042_Course_166289_696358.html",
+    tags: ["#AMD", "#AI", "#MachineLearning"],
   },
   {
-    id: 2,
-    content: "Thanks Meta for this opportunity. Learned a lot about how it's ALRIGHT to jump between roles, to just start as something. To work on something Greater than yourself.",
+    id: 3,
+    content: "Thanks Meta for this opportunity. Learned a lot about how it's ALRIGHT to jump between roles, to just start as something. To work on something Greater than yourself. To be just Present. To showcase. Even if it's something very little. What matters is you dream Big.",
     date: "May 2026",
     likes: 62,
     comments: 12,
     url: "#",
-  },
-  {
-    id: 3,
-    content: "73 out of 100. Alhamdulillah. Not because 73 is good. But because I walked out thinking I barely got 15, only the ones I was completely sure about.",
-    image: "/images/certs/1777616185012.jpeg",
-    date: "May 2026",
-    likes: 128,
-    comments: 34,
-    url: "#",
+    tags: ["#Meta", "#CareerGrowth"],
   },
   {
     id: 4,
-    content: "View my verified achievement from OPSWAT. Introduction to Critical Infrastructure Protection (ICIP)",
+    content: "View my verified achievement from OPSWAT. Introduction to Critical Infrastructure Protection (ICIP). This certification covers security standards and best practices for protecting essential infrastructure systems.",
     image: "/images/certs/1777094006081.jpeg",
     date: "Jan 2026",
     likes: 38,
     comments: 5,
     url: "https://www.credly.com/badges/326fc125-0ca6-4823-9ec5-366da9735c49/linked_in",
+    tags: ["#OPSWAT", "#Cybersecurity", "#CIP"],
   },
   {
     id: 5,
-    content: "I'm happy to share that I've obtained a new certification: Basic use of Google Workspace for Education Fundamentals from Google!",
+    content: "I'm happy to share that I've obtained a new certification: Basic use of Google Workspace for Education Fundamentals from Google! This covers essential tools for educational productivity and collaboration.",
     date: "2024",
     likes: 52,
     comments: 7,
     url: "#",
+    tags: ["#Google", "#GoogleWorkspace", "#Education"],
+  },
+  {
+    id: 6,
+    content: "Very disappointed with the management of GDG Data Science Hackathon 2026 organized by GDG on Campus COMSATS Wah. We received official confirmation but after traveling 150km, were informed the event was shifted to May 12th with NO prior notice. Students spent money, fuel, and hours traveling because they trusted official GDG communication.",
+    image: "/images/certs/1777525590042.jpeg",
+    date: "May 2026",
+    likes: 89,
+    comments: 23,
+    url: "#",
+    tags: ["#GDG", "#Hackathon", "#StudentRights"],
   },
 ];
 
@@ -66,7 +81,7 @@ function PostCard({ post, index }: { post: typeof linkedInPosts[0]; index: numbe
 
   return (
     <motion.div
-      className="glass rounded-xl overflow-hidden"
+      className="glass rounded-xl overflow-hidden flex flex-col"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -84,7 +99,7 @@ function PostCard({ post, index }: { post: typeof linkedInPosts[0]; index: numbe
       </div>
 
       {/* Content */}
-      <div className="px-4 pb-3">
+      <div className="px-4 pb-3 flex-1">
         <p className="text-sm text-gray-300 leading-relaxed">
           {displayContent}
           {shouldTruncate && (
@@ -96,6 +111,13 @@ function PostCard({ post, index }: { post: typeof linkedInPosts[0]; index: numbe
             </button>
           )}
         </p>
+        {post.tags && (
+          <div className="flex flex-wrap gap-1 mt-2">
+            {post.tags.map(tag => (
+              <span key={tag} className="text-xs text-neon-green/70">{tag}</span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Image */}
@@ -110,7 +132,7 @@ function PostCard({ post, index }: { post: typeof linkedInPosts[0]; index: numbe
       )}
 
       {/* Actions */}
-      <div className="p-4 flex items-center justify-between border-t border-white/10">
+      <div className="p-4 flex items-center justify-between border-t border-white/10 mt-auto">
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-1 text-xs text-gray-400">
             <ThumbsUp className="w-4 h-4" />
@@ -153,7 +175,8 @@ export function LinkedInActivity() {
             LinkedIn <span className="gradient-text">Updates</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Latest certifications, achievements, and professional updates from my LinkedIn profile.
+            Latest certifications, achievements, and professional updates from my LinkedIn profile. 
+            Including NSCT results, AMD AI Academy completion, and more.
           </p>
         </motion.div>
 
